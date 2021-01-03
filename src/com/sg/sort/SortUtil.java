@@ -1,5 +1,6 @@
 package com.sg.sort;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public class SortUtil {
@@ -14,12 +15,21 @@ public class SortUtil {
     }
 
     public static <Item extends Comparable<Item>> boolean less(Item first, Item second) {
-        return first.compareTo(second) == -1;
+        return first.compareTo(second) < 0;
     }
 
     public static <Item extends Comparable<Item>> boolean isSorted(Item[] items) {
         for (int i = 1; i < items.length; i++) {
             if (less(items[i], items[i - 1])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static <Item> boolean isSorted(Item[] items, Comparator<Item> comparator) {
+        for (int i = 1; i < items.length; i++) {
+            if (comparator.compare(items[i], items[i - 1]) < 0) {
                 return false;
             }
         }
