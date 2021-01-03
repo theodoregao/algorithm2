@@ -8,7 +8,7 @@ class ShellSortTest {
 
     @Test
     void initializeAnArrayWith100000Items_thenCallSort_correctOrderGenerated() {
-        final int SIZE = 100000;
+        final int SIZE = 1000000;
         final Integer[] items = new Integer[SIZE];
         for (int i = 0; i < SIZE; i++) {
             items[i] = i;
