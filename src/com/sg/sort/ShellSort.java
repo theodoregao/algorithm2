@@ -8,7 +8,7 @@ public class ShellSort {
         }
         while (h >= 1) {
             for (int k = 0; k < h; k++) {
-                for (int i = 0; i < items.length; i += h) {
+                for (int i = k; i < items.length; i += h) {
                     for (int j = i; j >= h && SortUtil.less(items[j], items[j - h]); j -= h) {
                         SortUtil.swap(items, j, j - h);
                     }
