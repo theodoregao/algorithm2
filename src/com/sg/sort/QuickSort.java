@@ -2,25 +2,25 @@ package com.sg.sort;
 
 public class QuickSort {
 
-    public static <Item extends Comparable<Item>> void sort(Item[] items) {
+    public static void sort(Comparable[] items) {
         SortUtil.shuffle(items);
         sortInternal(items, 0, items.length - 1);
     }
 
-    public static <Item extends Comparable<Item>> void threeWaySort(Item[] items) {
+    public static void threeWaySort(Comparable[] items) {
         threeWaySortInternal(items, 0, items.length - 1);
     }
 
-    private static <Item extends Comparable<Item>> void sortInternal(Item[] items, int lo, int hi) {
+    private static void sortInternal(Comparable[] items, int lo, int hi) {
         if (lo >= hi) return;
         final int j = partition(items, lo, hi);
         sortInternal(items, lo, j - 1);
         sortInternal(items, j + 1, hi);
     }
 
-    private static <Item extends Comparable<Item>> void threeWaySortInternal(Item[] items, int lo, int hi) {
+    private static void threeWaySortInternal(Comparable[] items, int lo, int hi) {
         if (lo >= hi) return;
-        final Item v = items[lo];
+        final Comparable v = items[lo];
         int i = lo + 1, lt = lo, gt = hi;
         while (i <= gt) {
             if (SortUtil.less(items[i], v)) SortUtil.swap(items, i++, lt++);
@@ -31,7 +31,7 @@ public class QuickSort {
         threeWaySortInternal(items, gt + 1, hi);
     }
 
-    private static <Item extends Comparable<Item>> int partition(Item[] items, int lo, int hi) {
+    private static int partition(Comparable[] items, int lo, int hi) {
         int i = lo + 1, j = hi;
         while (true) {
             while (i <= hi && !SortUtil.less(items[lo], items[i])) i++;

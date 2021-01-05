@@ -3,7 +3,7 @@ package com.sg.sort;
 import java.util.Comparator;
 
 public class InsertionSort {
-    public static <Item extends Comparable<Item>> void sort(Item[] items) {
+    public static void sort(Comparable[] items) {
         if (items == null || items.length <= 1) {
             return;
         }

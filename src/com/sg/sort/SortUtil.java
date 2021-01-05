@@ -14,11 +14,11 @@ public class SortUtil {
         items[j] = item;
     }
 
-    public static <Item extends Comparable<Item>> boolean less(Item first, Item second) {
+    public static boolean less(Comparable first, Comparable second) {
         return first.compareTo(second) < 0;
     }
 
-    public static <Item extends Comparable<Item>> boolean isSorted(Item[] items) {
+    public static boolean isSorted(Comparable[] items) {
         for (int i = 1; i < items.length; i++) {
             if (less(items[i], items[i - 1])) {
                 return false;
@@ -36,7 +36,7 @@ public class SortUtil {
         return true;
     }
 
-    public static <Item> void shuffle(Item[] items) {
+    public static void shuffle(Comparable[] items) {
         if (items == null || items.length == 0) {
             return;
         }

@@ -1,7 +1,7 @@
 package com.sg.sort;
 
 public class ShellSort {
-    public static <Item extends Comparable<Item>> void sort(Item[] items) {
+    public static void sort(Comparable[] items) {
         int h = 1;
         while (h < items.length / 3) {
             h = h * 3 + 1;

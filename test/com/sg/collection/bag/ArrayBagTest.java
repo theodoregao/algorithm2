@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArrayBagTest {
 
@@ -31,7 +31,7 @@ class ArrayBagTest {
             bag.add(Integer.toString(i));
         }
         int count = 0;
-        for (String str: bag) {
+        for (String str : bag) {
             count++;
         }
         assertEquals(10, count);
