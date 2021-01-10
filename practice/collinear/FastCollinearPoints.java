@@ -27,22 +27,20 @@ public class FastCollinearPoints {
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            final Point p0 = points[i];
-            Arrays.sort(tempPoints, p0.slopeOrder());
-
+        for (final Point point: points) {
+            Arrays.sort(tempPoints, point.slopeOrder());
             for (int s = 1, e = s + 1; s < n; e++) {
-                if (e == n || p0.slopeTo(tempPoints[s]) != p0.slopeTo(tempPoints[e])) {
+                if (e == n || point.slopeTo(tempPoints[s]) != point.slopeTo(tempPoints[e])) {
                     if (e - s >= 3) {
                         final int count = e - s;
                         final Point[] lineSegmentPoints = new Point[count + 1];
                         for (int k = 0; k < count; k++) {
                             lineSegmentPoints[k] = tempPoints[s + k];
                         }
-                        lineSegmentPoints[count] = p0;
+                        lineSegmentPoints[count] = point;
                         Arrays.sort(lineSegmentPoints);
-                        if (Double.NEGATIVE_INFINITY == p0.slopeTo(lineSegmentPoints[0])) {
-                            list.add(new LineSegment(p0, lineSegmentPoints[count]));
+                        if (Double.NEGATIVE_INFINITY == point.slopeTo(lineSegmentPoints[0])) {
+                            list.add(new LineSegment(point, lineSegmentPoints[count]));
                         } else {
 //                     StdOut.println("ignore");
                         }
