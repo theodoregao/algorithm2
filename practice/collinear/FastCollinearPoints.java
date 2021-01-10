@@ -31,8 +31,7 @@ public class FastCollinearPoints {
             final Point p0 = points[i];
             Arrays.sort(tempPoints, p0.slopeOrder());
 
-            int s = 1, e = 2;
-            while (s < n || e < n) {
+            for (int s = 1, e = s + 1; s < n; e++) {
                 if (e == n || p0.slopeTo(tempPoints[s]) != p0.slopeTo(tempPoints[e])) {
                     if (e - s >= 3) {
                         final int count = e - s;
@@ -49,8 +48,6 @@ public class FastCollinearPoints {
                         }
                     }
                     s = e;
-                } else {
-                    e++;
                 }
             }
         }
@@ -83,6 +80,7 @@ public class FastCollinearPoints {
 
         // print and draw the line segments
         FastCollinearPoints collinear = new FastCollinearPoints(points);
+        StdOut.println("Number of segments: " + collinear.numberOfSegments());
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
             segment.draw();
