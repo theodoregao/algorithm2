@@ -27,7 +27,7 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
         this(comparable);
         items = data.clone();
         size = items.length;
-        for (int i = size / 2; i >= 0; i--) sink(i);
+        for (int i = parent(size - 1); i >= 0; i--) sink(i);
     }
 
     @Override

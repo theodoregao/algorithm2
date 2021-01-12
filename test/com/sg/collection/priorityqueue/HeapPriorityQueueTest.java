@@ -71,4 +71,33 @@ class HeapPriorityQueueTest {
         while (!pq.isEmpty()) pq.deleteMax();
     }
 
+    @Test
+    void testPriorityQueueWithInitialArray_thenCallDeleteMax_correctOrderReturned() {
+        final Integer[] integers = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
+        final PriorityQueue<Integer> pq = new HeapPriorityQueue<>(integers);
+        assertEquals(10, pq.size());
+        assertFalse(pq.isEmpty());
+        for (int i = 10; i > 0; i--) {
+            assertEquals(i, pq.max());
+            assertEquals(i, pq.deleteMax());
+        }
+    }
+
+    @Test
+    void testPriorityQueueWithInitialArrayWithDecedentOrder_thenCallDeleteMax_correctOrderReturned() {
+        final Integer[] integers = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
+        final PriorityQueue<Integer> pq = new HeapPriorityQueue<>(integers, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+        assertEquals(10, pq.size());
+        assertFalse(pq.isEmpty());
+        for (int i = 1; i <= 10; i++) {
+            assertEquals(i, pq.max());
+            assertEquals(i, pq.deleteMax());
+        }
+    }
+
 }
