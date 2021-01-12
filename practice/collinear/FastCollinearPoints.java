@@ -27,7 +27,7 @@ public class FastCollinearPoints {
             }
         }
 
-        for (final Point point: points) {
+        for (final Point point : points) {
             Arrays.sort(tempPoints, point.slopeOrder());
             for (int s = 1, e = s + 1; s < n; e++) {
                 if (e == n || point.slopeTo(tempPoints[s]) != point.slopeTo(tempPoints[e])) {
