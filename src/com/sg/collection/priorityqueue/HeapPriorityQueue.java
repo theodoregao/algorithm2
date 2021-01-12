@@ -73,12 +73,12 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
         }
     }
 
-    private int left(int root) {
-        return 2 * root + 1;
+    private int left(int parent) {
+        return 2 * parent + 1;
     }
 
-    private int right(int root) {
-        return 2 * (root + 1);
+    private int right(int parent) {
+        return 2 * (parent + 1);
     }
 
     private int parent(int child) {
@@ -96,15 +96,13 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
     }
 
     private void sink(int parent) {
-        final int left = left(parent), right = right(parent);
-        if (left < size) {
-            if (right < size && less(left, right) && less(parent, right)) {
-                swap(parent, right);
-                sink(right);
-            } else if (less(parent, left)) {
-                swap(parent, left);
-                sink(left);
-            }
+        while (left(parent) < size) {
+            final int left = left(parent), right = right(parent);
+            int child = left;
+            if (right < size && less(left, right)) child = right;
+            if (!less(parent, child)) break;
+            swap(parent, child);
+            parent = child;
         }
     }
 
