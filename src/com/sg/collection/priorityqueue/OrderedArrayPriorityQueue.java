@@ -40,7 +40,7 @@ public class OrderedArrayPriorityQueue<Item extends Comparable<Item>> implements
     public Item deleteMax() {
         if (isEmpty()) throw new IllegalStateException();
         final Item item = items[--size];
-        if (size < items.length / 4 && size / 2 > DEFAULT_SIZE) {
+        if (size < items.length / 4 && items.length / 2 >= DEFAULT_SIZE) {
             resize(items.length / 2);
         }
         return item;
@@ -57,6 +57,7 @@ public class OrderedArrayPriorityQueue<Item extends Comparable<Item>> implements
     }
 
     private void resize(int size) {
+        if (items != null && items.length == size) return;
         final Item[] oldItems = items;
         items = (Item[]) new Comparable[size];
         for (int i = 0; i < Math.min(oldItems.length, size); i++) {

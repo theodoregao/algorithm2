@@ -52,6 +52,9 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
         items[0] = items[--size];
         items[size] = null;
         sink(0);
+        if (size < items.length / 4 && items.length / 2 >= DEFAULT_SIZE) {
+            resize(items.length / 2);
+        }
         return item;
     }
 
@@ -66,6 +69,7 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
     }
 
     private void resize(int size) {
+        if (items != null && items.length == size) return;
         final Item[] oldItems = items;
         items = (Item[]) new Comparable[size];
         for (int i = 0; i < Math.min(oldItems.length, size); i++) {
@@ -108,7 +112,7 @@ public class HeapPriorityQueue<Item extends Comparable<Item>> implements Priorit
 
     private void swim(int child) {
         if (child > 0) {
-            int parent = parent(child);
+            final int parent = parent(child);
             if (less(parent, child)) {
                 swap(parent, child);
                 swim(parent);
