@@ -65,6 +65,9 @@ public class Solver {
     private static SearchNode nextStep(MinPQ<SearchNode> priorityQueue, Board twin, List<Board> history, Set<Board> set) {
         if (priorityQueue.isEmpty()) return UNSOLVABLE_SEARCH_NODE;
         final SearchNode searchNode = priorityQueue.delMin();
+        if (searchNode.board.isGoal()) {
+            return new SearchNode(null, searchNode.board, searchNode.cost, true);
+        }
         if (searchNode.cost > BACKWARD_COST) {
             return UNSOLVABLE_SEARCH_NODE;
         }
