@@ -30,12 +30,12 @@ class BoardTest {
                 {8, 7, 0}
         };
         assertEquals(2, new Board(tiles_2).hamming());
-        final int[][] tiles_3 = {
+        final int[][] tiles_2_2 = {
                 {0, 2, 3},
                 {4, 1, 6},
                 {7, 8, 5}
         };
-        assertEquals(3, new Board(tiles_3).hamming());
+        assertEquals(2, new Board(tiles_2_2).hamming());
     }
 
     @Test
@@ -58,12 +58,12 @@ class BoardTest {
                 {7, 5, 0}
         };
         assertEquals(4, new Board(tiles_4).manhattan());
-        final int[][] tiles_8 = {
+        final int[][] tiles_4_2 = {
                 {0, 2, 3},
                 {4, 1, 6},
                 {7, 8, 5}
         };
-        assertEquals(8, new Board(tiles_8).manhattan());
+        assertEquals(4, new Board(tiles_4_2).manhattan());
     }
 
     @Test
