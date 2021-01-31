@@ -227,7 +227,6 @@ public class BinarySearchTreeST<Key extends Comparable<Key>, Value> implements O
                 final Node rightMin = min(parent.right);
                 rightMin.left = parent.left;
                 rightMin.right = deleteMin(parent.right);
-                rightMin.calculateSize();
                 parent = rightMin;
             }
         }
