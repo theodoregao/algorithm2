@@ -78,6 +78,7 @@ public class OrderArrayST<Key extends Comparable<Key>, Value> implements OrderST
     public int size() {
         return size;
     }
+
     @Override
     public Key min() {
         return size == 0 ? null : keys[0];

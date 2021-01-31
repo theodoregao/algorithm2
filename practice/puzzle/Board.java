@@ -13,6 +13,7 @@ public class Board {
     private final int manhattan;
     private int blankR;
     private int blankC;
+    private int hashCode = Integer.MIN_VALUE;
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -112,8 +113,6 @@ public class Board {
         }
         return true;
     }
-
-    private int hashCode = Integer.MIN_VALUE;
 
     @Override
     public int hashCode() {

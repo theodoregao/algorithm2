@@ -119,7 +119,7 @@ class LinkedListSTTest {
     @Test
     void testInputWithCharacters_thenIterateWithAllKeys_correctOccurrenceCountReturned() {
         final String str = "I love China, and I came to United State 10 years ago. Now we are missing home!";
-        for (char ch: str.toCharArray()) {
+        for (char ch : str.toCharArray()) {
             final char key = Character.toLowerCase(ch);
             if (st.contains(key)) {
                 st.put(key, st.get(key) + 1);
@@ -131,7 +131,7 @@ class LinkedListSTTest {
         assertEquals(6, st.get('i'));
 
         int size = 0;
-        for (Character ch: st.keys()) {
+        for (Character ch : st.keys()) {
             size++;
         }
         assertEquals(st.size(), size);

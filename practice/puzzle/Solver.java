@@ -25,6 +25,7 @@ public class Solver {
             return thiz.cost - that.cost;
         }
     };
+    private static int ignoreCount = 0;
     private final SearchNode solution;
 
     // find a solution to the initial board (using the A* algorithm)
@@ -61,7 +62,6 @@ public class Solver {
 
     }
 
-    private static int ignoreCount = 0;
     private static SearchNode nextStep(MinPQ<SearchNode> priorityQueue, Board twin, List<Board> history, Set<Board> set) {
         if (priorityQueue.isEmpty()) return UNSOLVABLE_SEARCH_NODE;
         final SearchNode searchNode = priorityQueue.delMin();

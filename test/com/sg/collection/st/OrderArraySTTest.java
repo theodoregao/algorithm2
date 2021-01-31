@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OrderArraySTTest {
 
@@ -120,7 +119,7 @@ class OrderArraySTTest {
     @Test
     void testInputWithCharacters_thenIterateWithAllKeys_correctOccurrenceCountReturned() {
         final String str = "I love China, and I came to United State 10 years ago. Now we are missing home!";
-        for (char ch: str.toCharArray()) {
+        for (char ch : str.toCharArray()) {
             final char key = Character.toLowerCase(ch);
             if (st.contains(key)) {
                 st.put(key, st.get(key) + 1);
@@ -132,7 +131,7 @@ class OrderArraySTTest {
         assertEquals(6, st.get('i'));
 
         int size = 0;
-        for (Character ch: st.keys()) {
+        for (Character ch : st.keys()) {
             size++;
         }
         assertEquals(st.size(), size);
@@ -149,9 +148,15 @@ class OrderArraySTTest {
         assertEquals(-1, st.rank(null));
         assertEquals(0, st.rank('\0'));
         assertEquals(0, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(-1); });
-        assertThrows(IllegalArgumentException.class, () -> { st.select(0); });
-        assertThrows(IllegalArgumentException.class, () -> { st.select(1); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(-1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(0);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(1);
+        });
 
         st.put('b', 1);
         assertEquals('b', st.min());
@@ -181,10 +186,16 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(1, st.rank('z'));
         assertEquals(1, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(-1); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(-1);
+        });
         assertEquals('b', st.select(0));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(1); });
-        assertThrows(IllegalArgumentException.class, () -> { st.select(2); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(2);
+        });
 
         st.put('y', 10);
         assertEquals('b', st.min());
@@ -214,10 +225,14 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(2, st.rank('z'));
         assertEquals(2, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(-1); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(-1);
+        });
         assertEquals('b', st.select(0));
         assertEquals('y', st.select(1));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(2); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(2);
+        });
 
         st.delete('y');
         assertEquals('b', st.min());
@@ -247,10 +262,16 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(1, st.rank('z'));
         assertEquals(1, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(-1); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(-1);
+        });
         assertEquals('b', st.select(0));
-        assertThrows(IllegalArgumentException.class, () -> { st.select(1); });
-        assertThrows(IllegalArgumentException.class, () -> { st.select(2); });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            st.select(2);
+        });
     }
 
     @Test
@@ -283,7 +304,7 @@ class OrderArraySTTest {
         final char startCh = 'f';
         final char endCh = 'k';
         int index = 0;
-        for (char ch: st.keys(startCh, endCh)) {
+        for (char ch : st.keys(startCh, endCh)) {
             assertEquals(startCh + index++, ch);
         }
         assertEquals(6, index);
