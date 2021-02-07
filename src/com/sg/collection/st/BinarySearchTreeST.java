@@ -196,7 +196,6 @@ public class BinarySearchTreeST<Key extends Comparable<Key>, Value> implements O
         if (size(parent.left) == k) return parent;
         else if (size(parent.left) > k) return select(parent.left, k);
         else return select(parent.right, k - size(parent.left) - 1);
-
     }
 
     private Node deleteMin(Node parent) {
