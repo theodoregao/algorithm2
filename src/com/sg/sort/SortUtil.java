@@ -6,9 +6,6 @@ import java.util.Random;
 public class SortUtil {
 
     public static <Item> void swap(Item[] items, int i, int j) {
-        if (i < 0 || j < 0 || i >= items.length || j >= items.length) {
-            throw new IllegalArgumentException("invalid index");
-        }
         final Item item = items[i];
         items[i] = items[j];
         items[j] = item;
@@ -37,9 +34,6 @@ public class SortUtil {
     }
 
     public static void shuffle(Comparable[] items) {
-        if (items == null || items.length == 0) {
-            return;
-        }
         final Random random = new Random();
         for (int i = 0; i < items.length; i++) {
             swap(items, i, i + random.nextInt(items.length - i));

@@ -3,17 +3,11 @@ package com.sg.sort;
 public class MergeSort {
 
     public static void sort(Comparable[] items) {
-        if (items == null || items.length <= 1) {
-            return;
-        }
         final Comparable[] aux = new Comparable[items.length];
         sortInternal(items, aux, 0, items.length - 1);
     }
 
     public static void bottomUpSort(Comparable[] items) {
-        if (items == null || items.length <= 1) {
-            return;
-        }
         final Comparable[] aux = new Comparable[items.length];
         for (int sz = 1; sz < items.length; sz += sz) {
             for (int i = 0; i < items.length; i += sz * 2) {
