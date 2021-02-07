@@ -225,8 +225,8 @@ public class BinarySearchTreeST<Key extends Comparable<Key>, Value> implements O
             else if (parent.right == null) return parent.left;
             else {
                 final Node rightMin = min(parent.right);
-                rightMin.left = parent.left;
                 rightMin.right = deleteMin(parent.right);
+                rightMin.left = parent.left;
                 parent = rightMin;
             }
         }

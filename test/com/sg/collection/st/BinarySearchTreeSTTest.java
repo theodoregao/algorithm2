@@ -276,7 +276,8 @@ class BinarySearchTreeSTTest {
 
     @Test
     void testPutDifferentValues_thenCallDeleteMinDeleteMax_thenCorrectValuesReturned() {
-        for (char ch = 'a'; ch <= 'z'; ch++) {
+        final String randomAtoZ = "eaiugdqsctyowvhbzxnmkflrpj";
+        for (char ch : randomAtoZ.toCharArray()) {
             st.put(ch, (int) ch);
         }
         assertEquals('a', st.min());
@@ -293,6 +294,30 @@ class BinarySearchTreeSTTest {
 
         st.deleteMax();
         assertEquals('x', st.max());
+
+        st.deleteMin();
+        assertEquals('d', st.min());
+
+        st.deleteMax();
+        assertEquals('w', st.max());
+
+        st.deleteMin();
+        assertEquals('e', st.min());
+
+        st.deleteMax();
+        assertEquals('v', st.max());
+
+        st.deleteMin();
+        assertEquals('f', st.min());
+
+        st.deleteMax();
+        assertEquals('u', st.max());
+
+        st.deleteMin();
+        assertEquals('g', st.min());
+
+        st.deleteMax();
+        assertEquals('t', st.max());
     }
 
     @Test
@@ -308,6 +333,21 @@ class BinarySearchTreeSTTest {
             assertEquals(startCh + index++, ch);
         }
         assertEquals(6, index);
+        assertEquals(10, st.size('f', 'o'));
+    }
+
+    @Test
+    void testDeleteLogicWithDifferentCases() {
+        st.put('g', 0);
+        st.put('o', 0);
+        st.put('l', 0);
+        st.delete('o');
+        assertEquals('g', st.min());
+        assertEquals('l', st.max());
+
+        st.put('a', 0);
+        st.delete('g');
+        assertEquals('a', st.min());
     }
 
 }

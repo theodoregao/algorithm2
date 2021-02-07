@@ -308,5 +308,20 @@ class OrderArraySTTest {
             assertEquals(startCh + index++, ch);
         }
         assertEquals(6, index);
+        assertEquals(10, st.size('f', 'o'));
     }
+
+    @Test
+    void testPutDifferentValues_thenRemoveItems_resizeWillCalled() {
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            st.put(ch, (int) ch);
+        }
+
+        for (char ch = 'a'; ch < 'z'; ch++) {
+            st.delete(ch);
+        }
+
+        assertEquals(1, st.size());
+    }
+
 }
