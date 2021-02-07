@@ -28,7 +28,7 @@ public class LinkedListStack<Item> implements Stack<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return null;
+        return new LinkedListStackIterator();
     }
 
     private class LinkedListStackIterator implements Iterator<Item> {

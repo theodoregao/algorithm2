@@ -3,6 +3,8 @@ package com.sg.collection.queue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayQueueTest {
@@ -50,6 +52,19 @@ class ArrayQueueTest {
         queue.enqueue(1);
         queue.dequeue();
         assertThrows(IllegalStateException.class, () -> queue.dequeue());
+    }
+
+    @Test
+    void addItemsToQueue_thenCallIterator_correctItemsReturned() {
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue(i);
+        }
+
+        final Iterator<Integer> it = queue.iterator();
+        int v = 0;
+        while (it.hasNext()) {
+            assertEquals(v++, it.next());
+        }
     }
 
 }

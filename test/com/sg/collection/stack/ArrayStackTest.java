@@ -3,6 +3,8 @@ package com.sg.collection.stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayStackTest {
@@ -41,6 +43,27 @@ class ArrayStackTest {
         stack.push("Shun");
         stack.pop();
         assertThrows(IllegalStateException.class, () -> stack.pop());
+    }
+
+    @Test
+    void pushItemsToStack_thenCallPop_monitorResizeGetCalled() {
+        for (int i = 0; i < 100; i++) {
+            stack.push(Integer.toString(i));
+        }
+        Iterator it = stack.iterator();
+        int count = 100;
+        while (it.hasNext()) {
+            assertEquals(Integer.toString(--count), it.next());
+        }
+
+        for (int i = 0; i < 90; i++) {
+            stack.pop();
+        }
+        it = stack.iterator();
+        count = 10;
+        while (it.hasNext()) {
+            assertEquals(Integer.toString(--count), it.next());
+        }
     }
 
 }
