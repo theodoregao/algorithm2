@@ -279,11 +279,10 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
         return x;
     }
 
-    private Node flipColor(Node node) {
+    private void flipColor(Node node) {
         node.color = !node.color;
         node.left.color = !node.left.color;
         node.right.color = !node.right.color;
-        return node;
     }
 
     private Node balance(Node node) {
