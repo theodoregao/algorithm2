@@ -342,7 +342,6 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * </pre>
      *
      * @param node original subtree root node
-     * @return new subtree root node
      */
     private void flipColor(Node node) {
         node.color = !node.color;
@@ -360,8 +359,8 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      *                        a
      * </pre>
      *
-     * @param node
-     * @return
+     * @param node original subtree root node
+     * @return new subtree root node
      */
     private Node balance(Node node) {
         if (isRed(node.right) && !isRed(node.left)) node = rotateLeft(node);
