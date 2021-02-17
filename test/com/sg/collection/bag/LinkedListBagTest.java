@@ -3,8 +3,6 @@ package com.sg.collection.bag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LinkedListBagTest {
@@ -43,9 +41,7 @@ class LinkedListBagTest {
             bag.add(Integer.toString(i));
         }
         int count = 0;
-        final Iterator<String> iterator = bag.iterator();
-        while (iterator.hasNext()) {
-            final String str = iterator.next();
+        for (String str : bag) {
             count++;
         }
         assertEquals(10, count);

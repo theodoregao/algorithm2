@@ -2,8 +2,6 @@ package com.sg.collection.priorityqueue;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class UnorderedArrayPriorityQueueTest {
@@ -39,12 +37,7 @@ class UnorderedArrayPriorityQueueTest {
 
     @Test
     void addItemsToMinPriorityQueue_thenDeleteMax_correctValueReturned() {
-        pq = new UnorderedArrayPriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        pq = new UnorderedArrayPriorityQueue<>((o1, o2) -> o2 - o1);
         assertEquals(0, pq.size());
         assertTrue(pq.isEmpty());
 

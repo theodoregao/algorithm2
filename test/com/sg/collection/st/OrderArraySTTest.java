@@ -148,15 +148,9 @@ class OrderArraySTTest {
         assertEquals(-1, st.rank(null));
         assertEquals(0, st.rank('\0'));
         assertEquals(0, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(-1);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(0);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(-1));
+        assertThrows(IllegalArgumentException.class, () -> st.select(0));
+        assertThrows(IllegalArgumentException.class, () -> st.select(1));
 
         st.put('b', 1);
         assertEquals('b', st.min());
@@ -186,16 +180,10 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(1, st.rank('z'));
         assertEquals(1, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(-1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(-1));
         assertEquals('b', st.select(0));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(1);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(2);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(1));
+        assertThrows(IllegalArgumentException.class, () -> st.select(2));
 
         st.put('y', 10);
         assertEquals('b', st.min());
@@ -225,14 +213,10 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(2, st.rank('z'));
         assertEquals(2, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(-1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(-1));
         assertEquals('b', st.select(0));
         assertEquals('y', st.select(1));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(2);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(2));
 
         st.delete('y');
         assertEquals('b', st.min());
@@ -262,16 +246,10 @@ class OrderArraySTTest {
         assertEquals(1, st.rank('y'));
         assertEquals(1, st.rank('z'));
         assertEquals(1, st.rank('\255'));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(-1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(-1));
         assertEquals('b', st.select(0));
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(1);
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            st.select(2);
-        });
+        assertThrows(IllegalArgumentException.class, () -> st.select(1));
+        assertThrows(IllegalArgumentException.class, () -> st.select(2));
     }
 
     @Test

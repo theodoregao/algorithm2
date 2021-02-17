@@ -50,7 +50,7 @@ class ArrayStackTest {
         for (int i = 0; i < 100; i++) {
             stack.push(Integer.toString(i));
         }
-        Iterator it = stack.iterator();
+        Iterator<String> it = stack.iterator();
         int count = 100;
         while (it.hasNext()) {
             assertEquals(Integer.toString(--count), it.next());

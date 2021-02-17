@@ -25,12 +25,7 @@ class InsertionSortTest {
     void initializeAnArrayWith1000ItemsAndComparator_thenCallSort_correctOrderGenerated() {
         final int SIZE = 1000;
         final Integer[] items = new Integer[SIZE];
-        final Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer first, Integer second) {
-                return second - first;
-            }
-        };
+        final Comparator<Integer> comparator = (first, second) -> second - first;
         for (int i = 0; i < SIZE; i++) {
             items[i] = i;
         }

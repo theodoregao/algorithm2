@@ -2,8 +2,6 @@ package com.sg.collection.priorityqueue;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class HeapPriorityQueueTest {
@@ -39,12 +37,7 @@ class HeapPriorityQueueTest {
 
     @Test
     void addItemsToMinPriorityQueue_thenDeleteMax_correctValueReturned() {
-        pq = new HeapPriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        pq = new HeapPriorityQueue<>((o1, o2) -> o2 - o1);
         assertEquals(0, pq.size());
         assertTrue(pq.isEmpty());
 
@@ -86,12 +79,7 @@ class HeapPriorityQueueTest {
     @Test
     void testPriorityQueueWithInitialArrayWithDecedentOrder_thenCallDeleteMax_correctOrderReturned() {
         final Integer[] integers = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
-        final PriorityQueue<Integer> pq = new HeapPriorityQueue<>(integers, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        final PriorityQueue<Integer> pq = new HeapPriorityQueue<>(integers, (o1, o2) -> o2 - o1);
         assertEquals(10, pq.size());
         assertFalse(pq.isEmpty());
         for (int i = 1; i <= 10; i++) {
