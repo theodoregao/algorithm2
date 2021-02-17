@@ -44,7 +44,7 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
     public void delete(Key key) {
         if (key == null) throw new IllegalArgumentException();
         if (!contains(key)) return;
-        if (!isRed(root.left) && isRed(root.right)) root.color = RED;
+        if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
         root = delete(root, key);
         if (!isEmpty()) root.color = BLACK;
         assert check();
@@ -285,7 +285,7 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * @return new subtree root node
      */
     private Node rotateLeft(Node node) {
-        assert isRed(node.right);
+        assert node != null && isRed(node.right);
         final Node x = node.right;
         node.right = x.left;
         x.left = node;
@@ -309,7 +309,7 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * @return new subtree root node
      */
     private Node rotateRight(Node node) {
-        assert isRed(node.left);
+        assert node != null && isRed(node.left);
         Node x = node.left;
         node.left = x.right;
         x.right = node;
@@ -326,17 +326,14 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      *     b
      *    / \  <=>  abc
      *   a   c
-     *
-     *   or
-     *
-     *   ab           bc
-     *     \   <=>   /
-     *      c       a
      * </pre>
      *
      * @param node original subtree root node
      */
     private void flipColor(Node node) {
+        assert node != null && node.left != null && node.right != null;
+        assert (!isRed(node) && isRed(node.left) && isRed(node.right))
+                || (isRed(node) && !isRed(node.left) && !isRed(node.right));
         node.color = !node.color;
         node.left.color = !node.left.color;
         node.right.color = !node.right.color;
@@ -356,6 +353,7 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * @return new subtree root node
      */
     private Node balance(Node node) {
+        assert node != null;
         if (isRed(node.right) && !isRed(node.left)) node = rotateLeft(node);
         if (isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
         if (isRed(node.left) && isRed(node.right)) flipColor(node);
@@ -382,6 +380,8 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * @return new subtree root node
      */
     private Node moveRedLeft(Node node) {
+        assert (node != null);
+        assert isRed(node) && !isRed(node.left) && !isRed(node.left.left);
         flipColor(node);
         if (isRed(node.right.left)) {
             node.right = rotateRight(node.right);
@@ -410,6 +410,8 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
      * @return new subtree root node
      */
     private Node moveRedRight(Node node) {
+        assert (node != null);
+        assert isRed(node) && !isRed(node.right) && !isRed(node.right.left);
         flipColor(node);
         if (isRed(node.left.left)) {
             node = rotateRight(node);
@@ -498,7 +500,7 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
     }
 
     private class Node {
-        final Key key;
+        Key key;
         Value value;
         Node left;
         Node right;
