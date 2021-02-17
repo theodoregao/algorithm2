@@ -3,8 +3,6 @@ package com.sg.collection.st;
 import com.sg.collection.queue.LinkedListQueue;
 import com.sg.collection.queue.Queue;
 
-import java.util.Iterator;
-
 public class BinarySearchTreeST<Key extends Comparable<Key>, Value> implements OrderST<Key, Value> {
 
     private Node root;
@@ -103,13 +101,8 @@ public class BinarySearchTreeST<Key extends Comparable<Key>, Value> implements O
 
     @Override
     public int size(Key lo, Key hi) {
-        final Iterator<Key> it = keys(lo, hi).iterator();
-        int size = 0;
-        while (it.hasNext()) {
-            size++;
-            it.next();
-        }
-        return size;
+        if (contains(hi)) return rank(hi) - rank(lo) + 1;
+        else return rank(hi) - rank(lo);
     }
 
     @Override

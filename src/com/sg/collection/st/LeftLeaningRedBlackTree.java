@@ -4,8 +4,6 @@ import com.sg.collection.queue.LinkedListQueue;
 import com.sg.collection.queue.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.Iterator;
-
 /**
  * Left Leaning Red Black Tree implementation. See more details:
  * <br>The @see <a href="https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf">Left-Leaning Red-Black Trees</a>
@@ -126,13 +124,8 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
 
     @Override
     public int size(Key lo, Key hi) {
-        final Iterator<Key> it = keys(lo, hi).iterator();
-        int size = 0;
-        while (it.hasNext()) {
-            size++;
-            it.next();
-        }
-        return size;
+        if (contains(hi)) return rank(hi) - rank(lo) + 1;
+        else return rank(hi) - rank(lo);
     }
 
     @Override
