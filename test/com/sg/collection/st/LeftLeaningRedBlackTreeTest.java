@@ -1,17 +1,22 @@
 package com.sg.collection.st;
 
+import com.sg.sort.SortUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LeftLeaningRedBlackTreeTest {
 
     private OrderST<Character, Integer> st;
+    private OrderST<Integer, Integer> stInt;
 
     @BeforeEach
     void setUp() {
         st = new LeftLeaningRedBlackTree<>();
+        stInt = new LeftLeaningRedBlackTree<>();
     }
 
     @Test
@@ -335,6 +340,38 @@ class LeftLeaningRedBlackTreeTest {
         st.put('a', 0);
         st.delete('g');
         assertEquals('a', st.min());
+    }
+
+    @Test
+    void test_buckInsertAndDelete_theCorrectResultReturned() {
+        for (int i = 0; i < 1000; i++) stInt.put(i, i);
+        for (int i = -100; i < 1100; i++) stInt.delete(i);
+        final Random random = new Random();
+        final Integer[] ints = new Integer[1000];
+        final Integer[] indexs = new Integer[1000];
+        final Integer[] indexs2 = new Integer[1000];
+        for (int i = 0; i < 1000; i++) {
+            indexs[i] = i;
+            indexs2[i] = i;
+            ints[i] = random.nextInt();
+            stInt.put(i, i);
+        }
+        SortUtil.shuffle(indexs);
+        SortUtil.shuffle(indexs2);
+        for (int i = 0; i < 1000; i++) {
+            stInt.delete(ints[indexs[i]]);
+            stInt.delete(ints[indexs2[i]]);
+        }
+    }
+
+    @Test
+    void test() {
+        for (int i = 0; i < 5; i++) {
+            stInt.put(i, i);
+        }
+        assertEquals(5, stInt.size());
+        stInt.delete(3);
+        assertEquals(4, stInt.size());
     }
 
 }

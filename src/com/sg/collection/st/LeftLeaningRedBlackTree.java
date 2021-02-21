@@ -245,9 +245,9 @@ public class LeftLeaningRedBlackTree<Key extends Comparable<Key>, Value> impleme
             if (!isRed(parent.right) && !isRed(parent.right.left)) parent = moveRedRight(parent);
             if (key.compareTo(parent.key) == 0) {
                 final Node rightMin = min(parent.right);
-                rightMin.right = deleteMin(parent.right);
-                rightMin.left = parent.left;
-                parent = rightMin;
+                parent.key = rightMin.key;
+                parent.value = rightMin.value;
+                parent.right = deleteMin(parent.right);
             } else {
                 parent.right = delete(parent.right, key);
             }
